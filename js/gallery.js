@@ -66,8 +66,9 @@ const images = [
 
 
 
+const listGallery = document.querySelector('.gallery');
+
 function createGalleryHtml(arrImages) {
-    const listGallery = document.querySelector('.gallery');
     const listGalleryHtml = document.createDocumentFragment();
 
     arrImages.forEach(image => {
@@ -85,7 +86,7 @@ function createGalleryHtml(arrImages) {
         linkGalleryHtml.href = image.original;
 
         itemGalleryHtml.append(linkGalleryHtml);
-        itemGalleryHtml.className = 'itemGalleryHtml';
+        itemGalleryHtml.className = 'gallery-item';
 
         listGalleryHtml.append(itemGalleryHtml);
     })
@@ -94,3 +95,19 @@ function createGalleryHtml(arrImages) {
 }
 
 createGalleryHtml(images);
+
+
+
+listGallery.addEventListener('click', openImgInModalWindow);
+
+function openImgInModalWindow(event) {
+
+    event.preventDefault();
+    if (event.target.className !== 'gallery-image') return;
+
+    const imgModalWindow = basicLightbox.create(`
+	<img src="${event.target.dataset.source}"/>
+`)
+    imgModalWindow.show();
+}
+

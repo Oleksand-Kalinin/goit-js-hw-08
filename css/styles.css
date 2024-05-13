@@ -47,6 +47,11 @@ img {
     gap: 24px;
 }
 
-.itemGalleryHtml {
+.gallery-item {
     width: calc((100% - (24px * 2)) / 3);
+    transition: transform 250ms linear;
+}
+
+.gallery-item:hover {
+    transform: scale(1.04);
 }
